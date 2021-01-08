@@ -463,30 +463,30 @@
 <td>cd $HOME</td>
 </tr>
 </tbody></table>
-<h3 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h3><pre><code class="yaml">repos:
- - repo: https://github.com/pre-commit/pre-commit-hooks
-   rev: v3.4.0
-   hooks:
-   - id: check-yaml
-   - id: check-json
- - repo: https://github.com/digitalpulp/pre-commit-php.git
-   rev: 1.4.0
-   hooks:
-   - id: php-lint-all
-     files: \.(php)$
- - repo: https://gitlab.com/PyCQA/flake8
-   rev: 3.8.4
-   hooks:
-   - id: flake8</code></pre>
+<h3 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h3><pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token key atrule">repos</span><span class="token punctuation">:</span>
+ <span class="token punctuation">-</span> <span class="token key atrule">repo</span><span class="token punctuation">:</span> https<span class="token punctuation">:</span>//github.com/pre<span class="token punctuation">-</span>commit/pre<span class="token punctuation">-</span>commit<span class="token punctuation">-</span>hooks
+   <span class="token key atrule">rev</span><span class="token punctuation">:</span> v3.4.0
+   <span class="token key atrule">hooks</span><span class="token punctuation">:</span>
+   <span class="token punctuation">-</span> <span class="token key atrule">id</span><span class="token punctuation">:</span> check<span class="token punctuation">-</span>yaml
+   <span class="token punctuation">-</span> <span class="token key atrule">id</span><span class="token punctuation">:</span> check<span class="token punctuation">-</span>json
+ <span class="token punctuation">-</span> <span class="token key atrule">repo</span><span class="token punctuation">:</span> https<span class="token punctuation">:</span>//github.com/digitalpulp/pre<span class="token punctuation">-</span>commit<span class="token punctuation">-</span>php.git
+   <span class="token key atrule">rev</span><span class="token punctuation">:</span> 1.4.0
+   <span class="token key atrule">hooks</span><span class="token punctuation">:</span>
+   <span class="token punctuation">-</span> <span class="token key atrule">id</span><span class="token punctuation">:</span> php<span class="token punctuation">-</span>lint<span class="token punctuation">-</span>all
+     <span class="token key atrule">files</span><span class="token punctuation">:</span> \.(php)$
+ <span class="token punctuation">-</span> <span class="token key atrule">repo</span><span class="token punctuation">:</span> https<span class="token punctuation">:</span>//gitlab.com/PyCQA/flake8
+   <span class="token key atrule">rev</span><span class="token punctuation">:</span> 3.8.4
+   <span class="token key atrule">hooks</span><span class="token punctuation">:</span>
+   <span class="token punctuation">-</span> <span class="token key atrule">id</span><span class="token punctuation">:</span> flake8<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="配置alias"><a href="#配置alias" class="headerlink" title="配置alias"></a>配置alias</h3><blockquote>
 <p>alias pre=”pre-commit run –config ${HOME}/.pre-commit-config.yaml”</p>
 </blockquote>
-<h3 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h3><pre><code class="bash">#将修改添加到暂存区
-git add .
-#执行校验该步骤将会执行hook
+<h3 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h3><pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#将修改添加到暂存区</span>
+<span class="token function">git</span> add <span class="token keyword">.</span>
+<span class="token comment" spellcheck="true">#执行校验该步骤将会执行hook</span>
 pre
-#校验通过再进行commit
-git commit --amend</code></pre>
+<span class="token comment" spellcheck="true">#校验通过再进行commit</span>
+<span class="token function">git</span> commit --amend<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="更多信息"><a href="#更多信息" class="headerlink" title="更多信息"></a>更多信息</h3><p>参考文档：<a href="https://pre-commit.com/" target="_blank" rel="noopener">pre-commit</a></p>
 <!-- 标记 -->
 

@@ -438,7 +438,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    66
+                    64
                 </div>
                 
 
@@ -458,25 +458,25 @@
                 <blockquote>
 <p>序言<br>闲来无聊手撸一个冒泡玩玩</p>
 </blockquote>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code class="go">package main
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre class="line-numbers language-go"><code class="language-go"><span class="token keyword">package</span> main
 
-import &quot;fmt&quot;
+<span class="token keyword">import</span> <span class="token string">"fmt"</span>
 
-var arr  = []int{12,14,78,56,98,34,7,4,1,1}
+<span class="token keyword">var</span> arr  <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">{</span><span class="token number">12</span><span class="token punctuation">,</span><span class="token number">14</span><span class="token punctuation">,</span><span class="token number">78</span><span class="token punctuation">,</span><span class="token number">56</span><span class="token punctuation">,</span><span class="token number">98</span><span class="token punctuation">,</span><span class="token number">34</span><span class="token punctuation">,</span><span class="token number">7</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">}</span>
 
-//冒泡
-func main()  {
-    for i := range arr {
-        for j := range arr {
-            if arr[i] &lt; arr[j] {
-                tmp := arr[j]
-                arr[j] = arr[i]
-                arr[i] = tmp
-            }
-        }
-    }
-    fmt.Println(arr)
-}</code></pre>
+<span class="token comment" spellcheck="true">//冒泡</span>
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token punctuation">{</span>
+    <span class="token keyword">for</span> i <span class="token operator">:=</span> <span class="token keyword">range</span> arr <span class="token punctuation">{</span>
+        <span class="token keyword">for</span> j <span class="token operator">:=</span> <span class="token keyword">range</span> arr <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">&lt;</span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token punctuation">{</span>
+                tmp <span class="token operator">:=</span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span>
+                arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
+                arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> tmp
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
             </div>
             <hr/>

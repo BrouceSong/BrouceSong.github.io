@@ -434,7 +434,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    207
+                    188
                 </div>
                 
 
@@ -457,12 +457,12 @@
 <h2 id="编写composer"><a href="#编写composer" class="headerlink" title="编写composer"></a>编写composer</h2><blockquote>
 <p>编写composer.json 引入monolog处理日志<br>这里由于我使用的php7.0x,所以引用的monolog-1.x版本的,版本2.x需要php7.2,按需选择即可</p>
 </blockquote>
-<pre><code class="json">{
-    &quot;require&quot;: {
-        &quot;monolog/monolog&quot;: &quot;1.*&quot;
-    },
-    &quot;repositories&quot;: {}
-}</code></pre>
+<pre class="line-numbers language-json"><code class="language-json"><span class="token punctuation">{</span>
+    <span class="token property">"require"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">"monolog/monolog"</span><span class="token operator">:</span> <span class="token string">"1.*"</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">"repositories"</span><span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><blockquote>
 <p>保存composer.json文件<br>执行composer install<br>结果如下</p>
 </blockquote>
@@ -472,20 +472,20 @@ Package operations: 1 install, 0 updates, 0 removals
   - Installing monolog/monolog (1.25.3): Downloading (100%)</code></pre><h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><blockquote>
 <p>编写index.php</p>
 </blockquote>
-<pre><code class="php">require __DIR__.&#39;/../vendor/autoload.php&#39;;
+<pre class="line-numbers language-php"><code class="language-php"><span class="token keyword">require</span> <span class="token constant">__DIR__</span><span class="token punctuation">.</span><span class="token string">'/../vendor/autoload.php'</span><span class="token punctuation">;</span>
 
 
-use Monolog\Logger;
-use Monolog\Handler\StreamHandler;
-use Monolog\Handler\FirePHPHandler;
+<span class="token keyword">use</span> <span class="token package">Monolog<span class="token punctuation">\</span>Logger</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">Monolog<span class="token punctuation">\</span>Handler<span class="token punctuation">\</span>StreamHandler</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">Monolog<span class="token punctuation">\</span>Handler<span class="token punctuation">\</span>FirePHPHandler</span><span class="token punctuation">;</span>
 
-$logger = new Logger(&#39;test_logger&#39;);
+<span class="token variable">$logger</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Logger</span><span class="token punctuation">(</span><span class="token string">'test_logger'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-$logger-&gt;pushHandler(
-    new StreamHandler(__DIR__.&#39;/../log/test.log&#39;, Logger::DEBUG)
-);
-$logger-&gt;pushHandler(new FirePHPHandler());
-$logger-&gt;info(&#39;hello log!&#39;);</code></pre>
+<span class="token variable">$logger</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">pushHandler</span><span class="token punctuation">(</span>
+    <span class="token keyword">new</span> <span class="token class-name">StreamHandler</span><span class="token punctuation">(</span><span class="token constant">__DIR__</span><span class="token punctuation">.</span><span class="token string">'/../log/test.log'</span><span class="token punctuation">,</span> Logger<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token constant">DEBUG</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$logger</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">pushHandler</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">FirePHPHandler</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$logger</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">'hello log!'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><blockquote>
 <p>大家可以看一看自己的日志是不是记下来了呢<br>有其他问题记得联系我</p>
 </blockquote>

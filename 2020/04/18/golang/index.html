@@ -438,7 +438,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    490
+                    486
                 </div>
                 
 
@@ -458,69 +458,69 @@
                 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>很多同学用github管理我们的代码,下面介绍下怎么用github+drone搭建自己的持续集成服务</p>
 <h2 id="申请oauth"><a href="#申请oauth" class="headerlink" title="申请oauth"></a>申请oauth</h2><p>因为我们需要依赖github的oauth服务,先申请一个Client Id和Client Secret:<br>申请页面位于github-&gt;setting-&gt;Developer settings-&gt;OAuth Apps<br><img src="https://upload-images.jianshu.io/upload_images/22774927-a73a71a41a689443.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="申请oauth页面"><br>提交完毕,我们就可以得到Client Id和Client Secret:<br><img src="https://upload-images.jianshu.io/upload_images/22774927-d3ae094458479a2c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="申请结果页"></p>
 <h2 id="编写docker-compose"><a href="#编写docker-compose" class="headerlink" title="编写docker-compose"></a>编写docker-compose</h2><p>接下来创建一个docker-compose.yml文件内容如下:</p>
-<pre><code class="yaml">version: &#39;2&#39;
-services:
-  drone-server:
-    image: drone/drone:1
-    container_name: drone-server
-    ports:
-      - &#39;10081:80&#39;      # Web管理面板的入口 PROTO=http  时使用该端口
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock   # docker.sock [1]
-      - /var/data/drone/:/var/lib/drone             # drone数据存放路径
-    environment:
-      - DRONE_GITHUB_CLIENT_ID=${DRONE_GITHUB_CLIENT_ID}  #上面申请的github CLIENT_ID
-      - DRONE_GITHUB_CLIENT_SECRET=${DRONE_GITHUB_CLIENT_SECRET}#上面申请的github CLIENT_SECRET
-      - DRONE_RPC_SECRET=${DRONE_RPC_SECRET}   #你的密钥MD5值即可
-      - DRONE_SERVER_HOST=你的IP:10081
-      - DRONE_SERVER_PROTO=${DRONE_SERVER_PROTO} #http 或 https  
-      - TZ=Asia/Shanghai
-    restart: always
-  drone-agent:
-    image: drone/drone-runner-docker:1
-    container_name: drone-runner
-    depends_on:
-      - drone-server
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock # docker.sock [1]
-    environment:
-      - DRONE_RPC_PROTO=${DRONE_SERVER_PROTO} #http 或 https
-      - DRONE_RPC_HOST=你的IP:10081
-      - DRONE_RPC_SECRET=${DRONE_RPC_SECRET} #你的密钥MD5值即可,跟上面的保持一致
-      - DRONE_RUNNER_CAPACITY=2 #最多同时运行几个
-      - DRONE_RUNNER_NAME=你的IP
-      - TZ=Asia/Shanghai
-    restart: always</code></pre>
+<pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">'2'</span>
+<span class="token key atrule">services</span><span class="token punctuation">:</span>
+  <span class="token key atrule">drone-server</span><span class="token punctuation">:</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> drone/drone<span class="token punctuation">:</span><span class="token number">1</span>
+    <span class="token key atrule">container_name</span><span class="token punctuation">:</span> drone<span class="token punctuation">-</span>server
+    <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token string">'10081:80'</span>      <span class="token comment" spellcheck="true"># Web管理面板的入口 PROTO=http  时使用该端口</span>
+    <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> /var/run/docker.sock<span class="token punctuation">:</span>/var/run/docker.sock   <span class="token comment" spellcheck="true"># docker.sock [1]</span>
+      <span class="token punctuation">-</span> /var/data/drone/<span class="token punctuation">:</span>/var/lib/drone             <span class="token comment" spellcheck="true"># drone数据存放路径</span>
+    <span class="token key atrule">environment</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> DRONE_GITHUB_CLIENT_ID=$<span class="token punctuation">{</span>DRONE_GITHUB_CLIENT_ID<span class="token punctuation">}</span>  <span class="token comment" spellcheck="true">#上面申请的github CLIENT_ID</span>
+      <span class="token punctuation">-</span> DRONE_GITHUB_CLIENT_SECRET=$<span class="token punctuation">{</span>DRONE_GITHUB_CLIENT_SECRET<span class="token punctuation">}</span><span class="token comment" spellcheck="true">#上面申请的github CLIENT_SECRET</span>
+      <span class="token punctuation">-</span> DRONE_RPC_SECRET=$<span class="token punctuation">{</span>DRONE_RPC_SECRET<span class="token punctuation">}</span>   <span class="token comment" spellcheck="true">#你的密钥MD5值即可</span>
+      <span class="token punctuation">-</span> DRONE_SERVER_HOST=你的IP<span class="token punctuation">:</span><span class="token number">10081</span>
+      <span class="token punctuation">-</span> DRONE_SERVER_PROTO=$<span class="token punctuation">{</span>DRONE_SERVER_PROTO<span class="token punctuation">}</span> <span class="token comment" spellcheck="true">#http 或 https  </span>
+      <span class="token punctuation">-</span> TZ=Asia/Shanghai
+    <span class="token key atrule">restart</span><span class="token punctuation">:</span> always
+  <span class="token key atrule">drone-agent</span><span class="token punctuation">:</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> drone/drone<span class="token punctuation">-</span>runner<span class="token punctuation">-</span>docker<span class="token punctuation">:</span><span class="token number">1</span>
+    <span class="token key atrule">container_name</span><span class="token punctuation">:</span> drone<span class="token punctuation">-</span>runner
+    <span class="token key atrule">depends_on</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> drone<span class="token punctuation">-</span>server
+    <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> /var/run/docker.sock<span class="token punctuation">:</span>/var/run/docker.sock <span class="token comment" spellcheck="true"># docker.sock [1]</span>
+    <span class="token key atrule">environment</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> DRONE_RPC_PROTO=$<span class="token punctuation">{</span>DRONE_SERVER_PROTO<span class="token punctuation">}</span> <span class="token comment" spellcheck="true">#http 或 https</span>
+      <span class="token punctuation">-</span> DRONE_RPC_HOST=你的IP<span class="token punctuation">:</span><span class="token number">10081</span>
+      <span class="token punctuation">-</span> DRONE_RPC_SECRET=$<span class="token punctuation">{</span>DRONE_RPC_SECRET<span class="token punctuation">}</span> <span class="token comment" spellcheck="true">#你的密钥MD5值即可,跟上面的保持一致</span>
+      <span class="token punctuation">-</span> DRONE_RUNNER_CAPACITY=2 <span class="token comment" spellcheck="true">#最多同时运行几个</span>
+      <span class="token punctuation">-</span> DRONE_RUNNER_NAME=你的IP
+      <span class="token punctuation">-</span> TZ=Asia/Shanghai
+    <span class="token key atrule">restart</span><span class="token punctuation">:</span> always<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>当前目录下执行docker-compose up -d就可以启动了.<br><img src="https://upload-images.jianshu.io/upload_images/22774927-ff15ddc62e6c03a4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="启动docker-compose"><br>访问我们的主页你的ip:10081,效果如图<br><img src="https://upload-images.jianshu.io/upload_images/22774927-fb4254c911fe9823.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="项目列表"><br><img src="https://upload-images.jianshu.io/upload_images/22774927-7548f78948808524.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="设置信息"></p>
 <h2 id="编写-drone-yml"><a href="#编写-drone-yml" class="headerlink" title="编写.drone.yml"></a>编写.drone.yml</h2><p>上图可以看到需要开启自动集成的项目还需要编写.drone.yml文件</p>
-<pre><code class="yaml">---
-kind: pipeline
-type: docker
-name: api-ui
-workspace:
-  base: /data/service
-  path: .
-steps:
-- name: 部署api-ui项目
-  image: appleboy/drone-ssh
-  settings:
-    host:
-      from_secret: host
-    port: 22
-    username:
-      from_secret: ssh_name
-    password:
-      from_secret: ssh_passwd
-    script:
-      - cd /home/xxxxxx/www/api-ui/
-      - pwd &amp;&amp; ls -l
-      - git pull origin master
-      - rm -rf dist/*
-      - cnpm run build
-      - pwd &amp;&amp; ls -l
-      - docker build -t api-ui:v1 .
-      - docker rm -f api-ui || true
-      - docker run -d --rm --name api-ui -p 80:80 api-ui:v1</code></pre>
+<pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token punctuation">---</span>
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> pipeline
+<span class="token key atrule">type</span><span class="token punctuation">:</span> docker
+<span class="token key atrule">name</span><span class="token punctuation">:</span> api<span class="token punctuation">-</span>ui
+<span class="token key atrule">workspace</span><span class="token punctuation">:</span>
+  <span class="token key atrule">base</span><span class="token punctuation">:</span> /data/service
+  <span class="token key atrule">path</span><span class="token punctuation">:</span> .
+<span class="token key atrule">steps</span><span class="token punctuation">:</span>
+<span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> 部署api<span class="token punctuation">-</span>ui项目
+  <span class="token key atrule">image</span><span class="token punctuation">:</span> appleboy/drone<span class="token punctuation">-</span>ssh
+  <span class="token key atrule">settings</span><span class="token punctuation">:</span>
+    <span class="token key atrule">host</span><span class="token punctuation">:</span>
+      <span class="token key atrule">from_secret</span><span class="token punctuation">:</span> host
+    <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">22</span>
+    <span class="token key atrule">username</span><span class="token punctuation">:</span>
+      <span class="token key atrule">from_secret</span><span class="token punctuation">:</span> ssh_name
+    <span class="token key atrule">password</span><span class="token punctuation">:</span>
+      <span class="token key atrule">from_secret</span><span class="token punctuation">:</span> ssh_passwd
+    <span class="token key atrule">script</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> cd /home/xxxxxx/www/api<span class="token punctuation">-</span>ui/
+      <span class="token punctuation">-</span> pwd &amp;&amp; ls <span class="token punctuation">-</span>l
+      <span class="token punctuation">-</span> git pull origin master
+      <span class="token punctuation">-</span> rm <span class="token punctuation">-</span>rf dist/*
+      <span class="token punctuation">-</span> cnpm run build
+      <span class="token punctuation">-</span> pwd &amp;&amp; ls <span class="token punctuation">-</span>l
+      <span class="token punctuation">-</span> docker build <span class="token punctuation">-</span>t api<span class="token punctuation">-</span>ui<span class="token punctuation">:</span>v1 .
+      <span class="token punctuation">-</span> docker rm <span class="token punctuation">-</span>f api<span class="token punctuation">-</span>ui <span class="token punctuation">|</span><span class="token punctuation">|</span> true
+      <span class="token punctuation">-</span> docker run <span class="token punctuation">-</span>d <span class="token punctuation">-</span><span class="token punctuation">-</span>rm <span class="token punctuation">-</span><span class="token punctuation">-</span>name api<span class="token punctuation">-</span>ui <span class="token punctuation">-</span>p 80<span class="token punctuation">:</span>80 api<span class="token punctuation">-</span>ui<span class="token punctuation">:</span>v1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>上面的from_secret后面的值可以在我们的setting页面添加<br><img src="https://upload-images.jianshu.io/upload_images/22774927-9196b5e02ca7cf6c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="加密内容"><br>设置完毕,我们后续提交代码的时候就会自动同步到我们的服务器了,是不是很方便呢<br><img src="https://upload-images.jianshu.io/upload_images/22774927-06e27c220914bc27.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="运行结果"></p>
 
             </div>
